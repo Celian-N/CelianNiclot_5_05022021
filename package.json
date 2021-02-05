@@ -1,21 +1,24 @@
 {
-  "name": "orinoco-backend",
+  "name": "celianniclot_p5_11122020",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch ./css/main.scss:./css/main.css --style expanded"
+    "sass": "sass --watch ./css/main.scss:./css/main.css --style compressed"
   },
-  "author": "",
+  "author": "Célian Niclot <celian.niclot@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Celian-N/CelianNiclot_5_05022021.git"
+  },
   "dependencies": {
-    "bcrypt": "^5.0.0",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.8",
-    "mongoose-unique-validator": "^2.0.2",
-    "uuid": "^3.3.2"
-  }
+    "sass": "^1.30.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Celian-N/CelianNiclot_5_05022021/issues"
+  },
+  "homepage": "https://github.com/Celian-N/CelianNiclot_5_05022021#readme",
+  "devDependencies": {},
+  "description": ""
 }
