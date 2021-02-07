@@ -6,15 +6,15 @@ fetch('http://localhost:3000/api/teddies')
   })
   .then((teddies) => {
     console.log(teddies);
-    setProduct(teddies);
+    setProducts(teddies);
   })
   .catch(() => alert('Erreur :' + error));
 
-function setProduct(datas) {
+const setProducts = (datas) => {
   for (const data of datas) {
     products.appendChild(productLink(data));
   }
-}
+};
 const productLink = (data) => {
   const div = document.createElement('div');
   div.classList = 'product-card';
@@ -23,7 +23,7 @@ const productLink = (data) => {
   div.appendChild(productDescr(data));
 
   const link = document.createElement('a');
-  link.href = `products.html/?id=${data._id}`;
+  link.href = `./src/pages/product.html?/id=${data._id}`;
 
   link.appendChild(div);
   return link;
@@ -58,7 +58,7 @@ function showProduct() {
   console.log('Produit');
 }
 
-// function setProduct(datas) {
+// function setProducts(datas) {
 //   for (const data of datas) {
 //     content.innerHTML +=
 //       '<a href="#" onclick="showProduct()"><div class="product-card" ><img class="product-card__img" src="' +
