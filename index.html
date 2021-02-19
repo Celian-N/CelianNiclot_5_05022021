@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
 
     <script
@@ -13,23 +14,46 @@
     <title>OriTeddy</title>
   </head>
   <body>
-    <div class="main">
-      <header class="full-width header">
-        <a href="index.html" class="header__logo"
-          ><img
-            src="images/teddy_1.jpg"
-            alt="Logo d'OriTeddy"
-            height="20"
-          />OriTeddy</a
-        >
-
+    <div class="header__back"></div>
+    <header class="full-width header">
+      <a href="index.html" class="header__logo"
+        ><img
+          src="images/shopping-cart.png"
+          alt="Logo d'OriTeddy"
+          height="30"
+        />OriTeddy</a
+      >
+      <div class="header-tabs">
         <a class="header__basket" href="src/pages/basket.html">
           <span id="basket-price"></span>
           <span class="fas fa-shopping-basket"></span>
+          <div id="basket-indicator"></div>
         </a>
-      </header>
+        <!-- <a class="header__profil" href="src/pages/user.html">
+          <span class="fas fa-user"></span>
+        </a> -->
+        <label class="dropdown">
+          <div class="dropdown__btn">
+            <span class="fas fa-user"></span>
+          </div>
 
-      <div class="separation"></div>
+          <input type="checkbox" class="dropdown__input" id="test" />
+
+          <ul class="dropdown__menu">
+            <li id="dropdown__menu--name"></li>
+            <li><a href="src/pages/user.html">Mes informations</a></li>
+            <li class="divider"></li>
+            <li><a href="src/pages/old-orders.html">Mes commandes</a></li>
+          </ul>
+        </label>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="filter-container">
+        <span>Couleurs :</span>
+        <div id="filters"></div>
+      </div>
 
       <div id="products-container"></div>
     </div>
