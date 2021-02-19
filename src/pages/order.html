@@ -29,9 +29,23 @@
           <span class="fas fa-shopping-basket"></span>
           <div id="basket-indicator"></div>
         </a>
-        <a class="header__profil" href="./user.html">
+        <!-- <a class="header__profil" href="./user.html">
           <span class="fas fa-user"></span>
-        </a>
+        </a> -->
+        <label class="dropdown">
+          <div class="dropdown__btn">
+            <span class="fas fa-user"></span>
+          </div>
+
+          <input type="checkbox" class="dropdown__input" id="test" />
+
+          <ul class="dropdown__menu">
+            <li id="dropdown__menu--name"></li>
+            <li><a href="src/pages/user.html">Mes informations</a></li>
+            <li class="divider"></li>
+            <li><a href="src/pages/old-orders.html">Mes commandes</a></li>
+          </ul>
+        </label>
       </div>
     </header>
 
