@@ -9,8 +9,7 @@ const emailInput = document.getElementById('mail');
 
 const userContact = {};
 
-//Load basket when page is mounted to set basketTable or emptyBasket text
-
+//Check if contactForm has already been type or not to setContactForm
 window.onload = () => {
   setBasketPrice();
   setBasketIndicator(localStorage.getItem('basket'));
@@ -19,8 +18,10 @@ window.onload = () => {
   }
 };
 
+//Event to save contactForm
 saveBtn.addEventListener('click', () => setUserContact());
 
+//Set contactForm if it has been change
 const setUserContact = () => {
   getUserContact();
   if (
@@ -40,6 +41,7 @@ const setUserContact = () => {
   console.log(localStorage.setItem('contact', JSON.stringify(userContact)));
 };
 
+//Get contactForm before change it
 const getUserContact = () => {
   userContact.lastName = lastNameInput.value;
   userContact.firstName = firstNameInput.value;
@@ -48,6 +50,7 @@ const getUserContact = () => {
   userContact.email = emailInput.value;
 };
 
+//Set contactForm if it has already been type
 const setContactForm = () => {
   const userContact = JSON.parse(localStorage.getItem('contact'));
   lastNameInput.value = userContact.lastName;

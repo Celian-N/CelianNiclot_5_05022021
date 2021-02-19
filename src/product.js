@@ -1,4 +1,4 @@
-const productId = window.location.href.toString().slice(48); //A REVOIR
+const productId = window.location.search.slice(4);
 const productContainer = document.getElementById('product-container');
 
 const basketPrice = document.getElementById('basket-price');
