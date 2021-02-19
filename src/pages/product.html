@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,58 +13,31 @@
     <title>OriTeddy</title>
   </head>
   <body>
-    <div class="main-product">
-      <header class="full-width header">
-        <a href="../../index.html" class="header__logo"
-          ><img
-            src="../../images/teddy_1.jpg"
-            alt="Logo d'OriTeddy"
-            height="20"
-          />OriTeddy</a
-        >
+    <div class="header__back"></div>
 
+    <header class="full-width header">
+      <a href="../../index.html" class="header__logo"
+        ><img
+          src="../../images/teddy_1.jpg"
+          alt="Logo d'OriTeddy"
+          height="20"
+        />OriTeddy</a
+      >
+
+      <div class="header-tabs">
         <a class="header__basket" href="./basket.html">
           <span id="basket-price"></span>
           <span class="fas fa-shopping-basket"></span>
+          <div id="basket-indicator"></div>
         </a>
-      </header>
+        <a class="header__profil" href="./user.html">
+          <span class="fas fa-user"></span>
+        </a>
+      </div>
+    </header>
 
-      <div class="separation separation__details"></div>
-
+    <div class="main-product">
       <div id="product-container"></div>
-      <div id="TEST"></div>
-      <!-- <div id="product-container">
-        <div class="product">
-          <p class="name">data.name Harry</p>
-          <div class="product-details">
-            <img class="product-details__img" src="../../images/teddy_1.jpg" />
-            <div class="product-details__descr">
-              <p class="product-details__descr--descr">
-                data.description (Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Itaque similique officia maiores dolore rerum
-                dolores hic pariatur reprehenderit obcaecati in, beatae porro
-                sed, sunt repudiandae, culpa nostrum eaque officiis ea?)
-              </p>
-              <div class="product-details__descr--colors">
-                <label for="color-select">Choose a pet:</label>
-                <select name="colors" id="color-select">
-                  <option value=""></option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                  <option value="hamster">Hamster</option>
-                  <option value="parrot">Parrot</option>
-                  <option value="spider">Spider</option>
-                  <option value="goldfish">Goldfish</option>
-                </select>
-              </div>
-              <div class="order">
-                <span class="order__price">data.price 50 €</span>
-                <button class="order__btn">Ajouter un panier</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </body>
 </html>

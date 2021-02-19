@@ -1,19 +1,46 @@
-const productId = window.location.href.toString().slice(49); //A REVOIR
+const productId = window.location.href.toString().slice(48); //A REVOIR
 const productContainer = document.getElementById('product-container');
 
 const basketPrice = document.getElementById('basket-price');
-basketPrice.textContent = `${localStorage.getItem('basket')},00 €` || '0,00 €';
+const basketIndicator = document.getElementById('basket-indicator');
+
+//Check if basketPrice exist or not to put the right value in the basket
+const setBasketPrice = () => {
+  if (
+    !localStorage.getItem('basketPrice') ||
+    localStorage.getItem('basketPrice') <= 0
+  ) {
+    basketPrice.textContent = '0,00€';
+  } else {
+    basketPrice.textContent = `${localStorage.getItem('basketPrice')},00 €`;
+  }
+};
+
+//Check if basket is empty or not to set the basket Indicator
+const setBasketIndicator = (data) => {
+  if (!data || JSON.parse(data).length <= 0) {
+    return (basketIndicator.classList = 'display-none');
+  }
+  basketIndicator.classList = 'basket-indicator';
+  basketIndicator.textContent = `${JSON.parse(data).length}`;
+};
+
+//Load basket when page is mounted
+window.onload = () => {
+  setBasketPrice();
+  setBasketIndicator(localStorage.getItem('basket'));
+};
 
 let teddyBear;
-let orderBtn;
+let addBasketBtn;
 let selectColor;
 
+//Get product from product ID in API and launch setProduct function to create DOM Elements. Then, it launch function that listen event from color select and add to baket button
 fetch(`http://localhost:3000/api/teddies/${productId}`)
   .then((result) => {
     return result.json();
   })
   .then((teddy) => {
-    console.log(teddy);
     setProduct(teddy);
     return teddy;
   })
@@ -22,10 +49,11 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
   })
   .catch(() => alert('Erreur :' + error));
 
+//Create the product container
 const setProduct = (data) => {
   productContainer.appendChild(product(data));
 };
-
+//Create the product main container from productDetails
 const product = (data) => {
   const div = document.createElement('div');
   div.classList = 'product';
@@ -40,6 +68,7 @@ const product = (data) => {
   return div;
 };
 
+//create the product details from product's image and product's description
 const productDetails = (data) => {
   const div = document.createElement('div');
   div.classList = 'product-details';
@@ -48,14 +77,16 @@ const productDetails = (data) => {
 
   return div;
 };
-
+//Create the product image
 const productImg = (data) => {
   const img = document.createElement('img');
   img.classList = 'product-details__img';
   img.src = `${data.imageUrl}`;
+  img.alt = `Image de l'ourson ${data.name}`;
   return img;
 };
 
+//Create the product description
 const productDescr = (data) => {
   const div = document.createElement('div');
   div.classList = 'product-details__descr';
@@ -70,6 +101,7 @@ const productDescr = (data) => {
   return div;
 };
 
+//Create the product's color selection from options loop of data.colors
 const productColors = (data) => {
   const div = document.createElement('div');
   div.classList = 'product-details__descr--colors';
@@ -95,6 +127,9 @@ const productColors = (data) => {
 
   return div;
 };
+
+//Create the product add to basket button and and product price
+//It also set addBasketButton to the created button
 const productOrder = (data) => {
   const span = document.createElement('span');
   span.classList = 'order__price';
@@ -105,7 +140,7 @@ const productOrder = (data) => {
   button.id = 'order-btn';
   button.textContent = 'Ajouter au panier';
 
-  orderBtn = button;
+  addBasketBtn = button;
 
   const div = document.createElement('div');
   div.classList = 'order';
@@ -116,6 +151,7 @@ const productOrder = (data) => {
   return div;
 };
 
+//Enable the button to be reactive when clicked and select element to send the choosen element and update basket
 const basketListener = (selectedTeddy) => {
   let selectedIndex = 0;
   let selectedColor = selectedTeddy.colors[selectedIndex];
@@ -125,28 +161,45 @@ const basketListener = (selectedTeddy) => {
     selectedColor = selectColor.options[selectedIndex].value;
   });
 
-  orderBtn.addEventListener('click', () => {
+  addBasketBtn.addEventListener('click', () => {
+    if (!localStorage.getItem('basket')) {
+      localStorage.setItem('basket', JSON.stringify([]));
+      localStorage.setItem('basketDetails', JSON.stringify([]));
+    }
     selectedTeddy.selectedColor = selectedColor;
 
-    localStorage.setItem(`${selectedTeddy._id}`, JSON.stringify(selectedTeddy));
+    const basketTable = JSON.parse(localStorage.getItem('basket'));
+    basketTable.push(`${selectedTeddy._id}`);
+    const basketDetailsTable = JSON.parse(
+      localStorage.getItem('basketDetails')
+    );
+    basketDetailsTable.push({
+      id: selectedTeddy._id,
+      name: selectedTeddy.name,
+      image: selectedTeddy.imageUrl,
+      color: selectedColor,
+      price: selectedTeddy.price / 100,
+    });
 
-    updateBasket(selectedTeddy);
+    localStorage.setItem('basket', JSON.stringify(basketTable));
+    localStorage.setItem('basketDetails', JSON.stringify(basketDetailsTable));
+
+    updateBasketPrice(selectedTeddy);
+    setBasketIndicator(localStorage.getItem('basket'));
   });
 };
 
-const updateBasket = (selectedTeddy) => {
-  const test = document.getElementById('TEST');
-  if (!localStorage.getItem('basket')) {
+//Update local storage when add to basket button is clicked
+const updateBasketPrice = (selectedTeddy) => {
+  if (!localStorage.getItem('basketPrice')) {
     currentBasketPrice = 0;
   } else {
-    currentBasketPrice = JSON.parse(localStorage.getItem('basket'));
+    currentBasketPrice = JSON.parse(localStorage.getItem('basketPrice'));
   }
 
   newBasketPrice = currentBasketPrice + selectedTeddy.price / 100;
 
-  localStorage.setItem('basket', newBasketPrice);
+  localStorage.setItem('basketPrice', newBasketPrice);
 
-  basketPrice.textContent = `${localStorage.getItem('basket')},00 €`;
-
-  test.innerHTML = `${newBasketPrice}`;
+  basketPrice.textContent = `${localStorage.getItem('basketPrice')},00 €`;
 };
