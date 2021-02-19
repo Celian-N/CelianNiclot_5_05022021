@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/4ae471da8b.js"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript" src="../helpers.js" defer></script>
     <script type="text/javascript" src="../user.js" defer></script>
     <title>Mon Panier</title>
   </head>
@@ -30,9 +31,23 @@
           <span class="fas fa-shopping-basket"></span>
           <div id="basket-indicator"></div>
         </a>
-        <a class="header__profil" href="./user.html">
+        <!-- <a class="header__profil" href="./user.html">
           <span class="fas fa-user"></span>
-        </a>
+        </a> -->
+        <label class="dropdown">
+          <div class="dropdown__btn">
+            <span class="fas fa-user"></span>
+          </div>
+
+          <input type="checkbox" class="dropdown__input" id="test" />
+
+          <ul class="dropdown__menu">
+            <li id="dropdown__menu--name"></li>
+            <li><a href="src/pages/user.html">Mes informations</a></li>
+            <li class="divider"></li>
+            <li><a href="src/pages/old-orders.html">Mes commandes</a></li>
+          </ul>
+        </label>
       </div>
     </header>
     <div class="main-user">

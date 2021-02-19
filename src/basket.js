@@ -4,27 +4,11 @@ const basketPrice = document.getElementById('basket-price');
 const basketIndicator = document.getElementById('basket-indicator');
 const formContainer = document.getElementById('form-container');
 
-//Check if basketPrice exist or not to put the right value in the basket
-const setBasketPrice = () => {
-  if (
-    !localStorage.getItem('basketPrice') ||
-    localStorage.getItem('basketPrice') <= 0
-  ) {
-    basketPrice.textContent = '0,00€';
-  } else {
-    basketPrice.textContent = `${localStorage.getItem('basketPrice')},00 €`;
-  }
-};
-
-//Check if basket is empty or not to set the basket Indicator and form container
-const setBasketIndicator = (data) => {
+const setFormContainer = (data) => {
   if (!data || JSON.parse(data).length <= 0) {
-    formContainer.classList = 'display-none';
-    return (basketIndicator.classList = 'display-none');
+    return (formContainer.classList = 'display-none');
   }
-  formContainer.classList = 'basket__form';
-  basketIndicator.classList = 'basket-indicator';
-  basketIndicator.textContent = `${JSON.parse(data).length}`;
+  return (formContainer.classList = 'basket__form');
 };
 
 //Load basket when page is mounted to set basketTable or emptyBasket text
@@ -39,6 +23,7 @@ window.onload = () => {
   }
   setBasketPrice();
   setBasketIndicator(localStorage.getItem('basket'));
+  setFormContainer(localStorage.getItem('basket'));
   getContactForm();
   if (JSON.parse(localStorage.getItem('contact'))) {
     setContactForm();

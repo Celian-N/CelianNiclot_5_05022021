@@ -1,32 +1,15 @@
 const saveBtn = document.getElementById('save-btn');
 const basketPrice = document.getElementById('basket-price');
 const basketIndicator = document.getElementById('basket-indicator');
+const lastNameInput = document.getElementById('lastname');
+const firstNameInput = document.getElementById('firstname');
+const addressInput = document.getElementById('address');
+const cityInput = document.getElementById('city');
+const emailInput = document.getElementById('mail');
 
 const userContact = {};
 
-//Check if basketPrice exist or not to put the right value in the basket
-const setBasketPrice = () => {
-  if (
-    !localStorage.getItem('basketPrice') ||
-    localStorage.getItem('basketPrice') <= 0
-  ) {
-    basketPrice.textContent = '0,00€';
-  } else {
-    basketPrice.textContent = `${localStorage.getItem('basketPrice')},00 €`;
-  }
-};
-
-//Check if basket is empty or not to set the basket Indicator and form container
-const setBasketIndicator = (data) => {
-  if (!data || JSON.parse(data).length <= 0) {
-    return (basketIndicator.classList = 'display-none');
-  }
-  basketIndicator.classList = 'basket-indicator';
-  basketIndicator.textContent = `${JSON.parse(data).length}`;
-};
-
-//Load basket when page is mounted to set basketTable or emptyBasket text
-
+//Check if contactForm has already been type or not to setContactForm
 window.onload = () => {
   setBasketPrice();
   setBasketIndicator(localStorage.getItem('basket'));
@@ -35,8 +18,10 @@ window.onload = () => {
   }
 };
 
+//Event to save contactForm
 saveBtn.addEventListener('click', () => setUserContact());
 
+//Set contactForm if it has been change
 const setUserContact = () => {
   getUserContact();
   if (
@@ -56,19 +41,16 @@ const setUserContact = () => {
   console.log(localStorage.setItem('contact', JSON.stringify(userContact)));
 };
 
+//Get contactForm before change it
 const getUserContact = () => {
-  const lastNameInput = document.getElementById('lastname');
   userContact.lastName = lastNameInput.value;
-  const firstNameInput = document.getElementById('firstname');
   userContact.firstName = firstNameInput.value;
-  const addressInput = document.getElementById('address');
   userContact.address = addressInput.value;
-  const cityInput = document.getElementById('city');
   userContact.city = cityInput.value;
-  const emailInput = document.getElementById('mail');
   userContact.email = emailInput.value;
 };
 
+//Set contactForm if it has already been type
 const setContactForm = () => {
   const userContact = JSON.parse(localStorage.getItem('contact'));
   lastNameInput.value = userContact.lastName;
