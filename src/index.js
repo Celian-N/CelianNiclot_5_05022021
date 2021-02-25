@@ -72,6 +72,9 @@ const productDescr = (data) => {
   spanName.classList = 'product-card__descr--name';
   spanName.textContent = `${data.name}`;
 
+  const divBot = document.createElement('div');
+  divBot.classList = 'product-card__descr--bottom';
+
   const spanPrice = document.createElement('p');
   spanPrice.classList = 'product-card__descr--price';
   spanPrice.textContent = `${data.price / 100}€`;
@@ -92,9 +95,13 @@ const productDescr = (data) => {
     spanColors.appendChild(divColor);
   }
 
+  //Faire un switch case au lieu des if
+
+  divBot.appendChild(spanColors);
+  divBot.appendChild(spanPrice);
+
   div.appendChild(spanName);
-  div.appendChild(spanPrice);
-  div.appendChild(spanColors);
+  div.appendChild(divBot);
 
   return div;
 };

@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
 
     <script
@@ -12,51 +16,93 @@
     ></script>
     <script type="text/javascript" src="./src/helpers.js" defer></script>
     <script type="text/javascript" src="./src/index.js" defer></script>
+
     <title>OriTeddy</title>
   </head>
   <body>
-    <div class="header__back"></div>
-    <header class="full-width header">
-      <a href="index.html" class="header__logo"
-        ><img
-          src="images/shopping-cart.png"
-          alt="Logo d'OriTeddy"
-          height="30"
-        />OriTeddy</a
-      >
-      <div class="header-tabs">
-        <a class="header__basket" href="src/pages/basket.html">
-          <span id="basket-price"></span>
-          <span class="fas fa-shopping-basket"></span>
-          <div id="basket-indicator"></div>
-        </a>
-        <!-- <a class="header__profil" href="src/pages/user.html">
+    <div class="container">
+      <header class="full-width header">
+        <a href="index.html" class="header__logo"
+          ><img
+            src="images/shopping-cart.png"
+            alt="Logo d'OriTeddy"
+            height="30"
+          />OriTeddy</a
+        >
+        <div class="header-tabs">
+          <a class="header__products" href="index.html"> Nos peluches </a>
+          <div class="vertical-separation__smaller"></div>
+          <a class="header__basket" href="src/pages/basket.html">
+            <span id="basket-price"></span>
+            <img src="images/Cart.svg" alt="Logo du panier" height="20" />
+            <div id="basket-indicator"></div>
+          </a>
+          <!-- <a class="header__profil" href="src/pages/user.html">
           <span class="fas fa-user"></span>
         </a> -->
-        <label class="dropdown">
-          <div class="dropdown__btn">
-            <span class="fas fa-user"></span>
+          <label class="dropdown">
+            <div class="dropdown__name">
+              PROFIL
+              <div class="dropdown__btn">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+
+            <input type="checkbox" class="dropdown__input" id="test" />
+
+            <ul class="dropdown__menu">
+              <li><a href="src/pages/user.html">Mes informations</a></li>
+              <li class="divider"></li>
+              <li><a href="src/pages/old-orders.html">Mes commandes</a></li>
+            </ul>
+          </label>
+        </div>
+      </header>
+
+      <div class="main animated-background">
+        <div class="filter-container">
+          <div id="filters"></div>
+        </div>
+
+        <div id="products-container"></div>
+      </div>
+      <footer class="footer">
+        <img class="footer__img" src="../images/teddy_1.jpg" />
+        <div class="footer__contact">
+          <h3>Nous contacter</h3>
+          <p class="footer__contact--descr">
+            Célian et son équipe sont toujours là pour vous répondre
+          </p>
+          <div class="footer__contact--logo">
+            <a href="contact.html"><span class="fas fa-paper-plane"></span></a>
+            <a href="FAQ.html"><span class="fas fa-question"></span></a>
           </div>
-
-          <input type="checkbox" class="dropdown__input" id="test" />
-
-          <ul class="dropdown__menu">
-            <li id="dropdown__menu--name"></li>
-            <li><a href="src/pages/user.html">Mes informations</a></li>
-            <li class="divider"></li>
-            <li><a href="src/pages/old-orders.html">Mes commandes</a></li>
-          </ul>
-        </label>
-      </div>
-    </header>
-
-    <div class="main">
-      <div class="filter-container">
-        <span>Couleurs :</span>
-        <div id="filters"></div>
-      </div>
-
-      <div id="products-container"></div>
+        </div>
+        <div class="vertical-separation"></div>
+        <div class="footer__us">
+          <h3>Nous.</h3>
+          <a>Notre vision</a>
+          <a>Vos avis</a>
+          <a>Nous rejoindre</a>
+        </div>
+        <div class="footer__follow">
+          <h3>Nous suivre.</h3>
+          <div class="footer__follow--icon">
+            <a href="facebook.com/Oriteddy">
+              <span class="fab fa-facebook-f"></span>
+            </a>
+            <a href="twitter.com/Oriteddy">
+              <span class="fab fa-twitter"></span>
+            </a>
+            <a href="tiktok.com/Oriteddy">
+              <span class="fab fa-tiktok"></span>
+            </a>
+            <a href="instagram.com/Oriteddy">
+              <span class="fab fa-instagram"></span>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
