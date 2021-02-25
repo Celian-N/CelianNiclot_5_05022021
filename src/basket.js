@@ -34,7 +34,18 @@ window.onload = () => {
 const setEmptyBasket = () => {
   const div = document.createElement('div');
   div.classList = 'basket__empty';
-  div.textContent = 'Aucun article dans le panier ...';
+
+  const span = document.createElement('span');
+  span.textContent = "Vous n'avez aucun article dans votre panier...";
+
+  const button = document.createElement('a');
+  button.classList = 'basket__empty--btn';
+  button.textContent = 'Découvrez nos peluches';
+  button.href = '../../index.html';
+
+  div.appendChild(span);
+  div.appendChild(button);
+
   return div;
 };
 
@@ -46,6 +57,7 @@ const setBasketTable = (datas) => {
 //Function to reload basket table when a product is delete from basket
 const reloadBasketTable = (datas) => {
   if (datas.length <= 0) {
+    setFormContainer();
     return tableContainer.replaceChild(
       setEmptyBasket(),
       tableContainer.childNodes[0]
@@ -58,23 +70,19 @@ const reloadBasketTable = (datas) => {
 const basketTable = (datas) => {
   const table = document.createElement('table');
   table.classList = 'basket__table';
-  table.setAttribute('cellpadding', '15');
 
   const tableRow = document.createElement('tr');
   const tableMenu1 = document.createElement('th');
   const tableMenu2 = document.createElement('th');
   const tableMenu3 = document.createElement('th');
-  const tableMenu4 = document.createElement('th');
 
   tableMenu1.textContent = 'Ourson';
   tableMenu2.textContent = 'Couleur';
-  tableMenu3.textContent = 'Quantité';
-  tableMenu4.textContent = 'Prix';
+  tableMenu3.textContent = 'Prix';
 
   tableRow.appendChild(tableMenu1);
   tableRow.appendChild(tableMenu2);
   tableRow.appendChild(tableMenu3);
-  tableRow.appendChild(tableMenu4);
 
   table.appendChild(tableRow);
 
@@ -94,7 +102,6 @@ const basketDetails = (data) => {
   const tableDescr2 = document.createElement('td');
   const tableDescr3 = document.createElement('td');
   const tableDescr4 = document.createElement('td');
-  const tableDescr5 = document.createElement('td');
 
   const deleteBtn = document.createElement('button');
   deleteBtn.classList = 'basket__product--delete';
@@ -137,16 +144,14 @@ const basketDetails = (data) => {
   tableDescr1.classList = 'basket__product';
 
   tableDescr2.textContent = `${data.color}`;
-  tableDescr3.textContent = 'Quantité';
-  tableDescr4.textContent = `${data.price},00 €`;
+  tableDescr3.textContent = `${data.price},00 €`;
 
-  tableDescr5.appendChild(deleteBtn);
+  tableDescr4.appendChild(deleteBtn);
 
   tableRow.appendChild(tableDescr1);
   tableRow.appendChild(tableDescr2);
   tableRow.appendChild(tableDescr3);
   tableRow.appendChild(tableDescr4);
-  tableRow.appendChild(tableDescr5);
 
   return tableRow;
 };

@@ -62,12 +62,12 @@
   font-size: 10px;
   width: 15px;
   height: 15px;
-  background: #372881;
+  background: darken(#adcec9, 50%);
   color: white;
   position: relative;
-  top: -10px;
-  left: -10px;
-  border-radius: 5px;
+  top: 10px;
+  left: -25px;
+  border-radius: 10px;
 }
 
 .header-tabs {
@@ -91,6 +91,7 @@
   padding-bottom: 70px;
   background: rgba(255, 255, 255, 0.15);
   z-index: 0;
+  min-height: 60vh;
 }
 
 #products-container {
@@ -206,22 +207,14 @@
 
 //----PRODUCT PAGE
 
-.main-product,
-.main-basket {
+.main-product {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
-  margin: 100px 5vh 5vw 5vh;
-
-  border-radius: 40px;
   overflow: hidden;
+  padding-bottom: 70px;
   background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(148, 148, 151, 0.37);
-  backdrop-filter: blur(6.5px);
-  -webkit-backdrop-filter: blur(6.5px);
-  border: 2px solid rgba(255, 255, 255, 0.18);
-  //min-height: 90vh;
+  z-index: 0;
 }
 
 #product-container {
@@ -291,14 +284,146 @@
 }
 
 //---BASKET PAGE
-
-.basket__product {
+.main-basket {
+  justify-content: center;
+}
+.basket {
+  background: linear-gradient(126deg, #ffffff66 0%, #ffffff24 100%);
+  box-shadow: 0px 3px 50px #0000000f;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(#adcec9, 0.2);
+  width: 100%;
+  min-height: 300px;
+  margin-top: 20px;
+  padding: 20px 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  .basket__product--img {
-    background: red;
-    width: 100px;
+  justify-content: center;
+  align-items: flex-start;
+  &__empty {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    &--btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 50px;
+      border-radius: 20px;
+      background: #adcec9;
+      border: 0;
+      height: 40px;
+      padding: 0 20px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 400ms;
+      &:hover {
+        transform: scale(0.97);
+      }
+    }
+  }
+  &__table {
+    border-spacing: 0 10px;
+    & th {
+      padding: 15px;
+      background: rgba(#adcec9, 0.7);
+    }
+    & th:nth-child(1) {
+      border-radius: 10px 0 0 10px;
+    }
+    & th:nth-child(3) {
+      border-radius: 0 10px 10px 0;
+    }
+    & td {
+      padding: 10px 20px;
+      background: rgba(#adcec9, 0.2);
+    }
+    & td:nth-child(1) {
+      border-radius: 10px 0 0 10px;
+    }
+    & td:nth-child(4) {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+  &__product {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &--img {
+      width: 50px;
+    }
+    &--delete {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+      border-radius: 30px;
+      background: white;
+      padding: 10px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      transition: all 300ms;
+      &:hover {
+        background: rgba(#adcec9, 0.2);
+      }
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    width: 50%;
+    &--title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    & form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      & p {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 60%;
+        justify-content: space-between;
+        box-sizing: border-box;
+        & input {
+          width: 200px;
+          color: white;
+          background: rgba(black, 0.5);
+          border-radius: 3px;
+          border: 0;
+          padding: 10px;
+        }
+      }
+    }
+    & button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 50px;
+      border-radius: 20px;
+      background: #adcec9;
+      border: 0;
+      height: 40px;
+      padding: 0 20px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 400ms;
+      &:hover {
+        transform: scale(0.97);
+      }
+    }
   }
 }
 

@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
 
     <script
       src="https://kit.fontawesome.com/4ae471da8b.js"
@@ -14,81 +19,141 @@
     <title>Mon Panier</title>
   </head>
   <body>
-    <div class="header__back"></div>
+    <div class="container">
+      <header class="full-width header">
+        <a href="../../index.html" class="header__logo"
+          ><img
+            src="../../images/shopping-cart.png"
+            alt="Logo d'OriTeddy"
+            height="30"
+          />OriTeddy</a
+        >
+        <div class="header-tabs">
+          <a class="header__products" href="../../index.html"> Nos peluches </a>
+          <div class="vertical-separation__smaller"></div>
+          <a class="header__basket" href="./basket.html">
+            <span id="basket-price"></span>
+            <img src="../../images/Cart.svg" alt="Logo du panier" height="20" />
+            <div id="basket-indicator"></div>
+          </a>
+          <!-- <a class="header__profil" href="src/pages/user.html">
+        <span class="fas fa-user"></span>
+      </a> -->
+          <label class="dropdown">
+            <div class="dropdown__name">
+              PROFIL
+              <div class="dropdown__btn">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
 
-    <header class="full-width header">
-      <a href="../../index.html" class="header__logo"
-        ><img
-          src="../../images/shopping-cart.png"
-          alt="Logo d'OriTeddy"
-          height="20"
-        />OriTeddy</a
-      >
+            <input type="checkbox" class="dropdown__input" id="test" />
 
-      <div class="header-tabs">
-        <a class="header__basket" href="./basket.html">
-          <span id="basket-price"></span>
-          <span class="fas fa-shopping-basket"></span>
-          <div id="basket-indicator"></div>
-        </a>
-        <!-- <a class="header__profil" href="./user.html">
-          <span class="fas fa-user"></span>
-        </a> -->
-        <label class="dropdown">
-          <div class="dropdown__btn">
-            <span class="fas fa-user"></span>
+            <ul class="dropdown__menu">
+              <li><a href="./user.html">Mes informations</a></li>
+              <li class="divider"></li>
+              <li><a href="./old-orders.html">Mes commandes</a></li>
+            </ul>
+          </label>
+        </div>
+      </header>
+
+      <div class="main main-basket animated-background">
+        <div class="basket">
+          <div id="table-container" class="basket__table"></div>
+          <div id="form-container" class="basket__form">
+            <p class="basket__form--title">Vos informations</p>
+            <form type="post" class="order-form">
+              <p>
+                <label for="lastname">Nom :</label>
+                <input
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  maxlength="20"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="firstname">Prénom :</label>
+                <input
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  maxlength="30"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="address">Adresse :</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="city">Ville :</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  maxlength="20"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="mail">Mail :</label>
+                <input type="email" id="mail" name="mail" required size="10" />
+              </p>
+            </form>
+            <button id="order-btn">Commander</button>
           </div>
-
-          <input type="checkbox" class="dropdown__input" id="test" />
-
-          <ul class="dropdown__menu">
-            <li id="dropdown__menu--name"></li>
-            <li><a href="src/pages/user.html">Mes informations</a></li>
-            <li class="divider"></li>
-            <li><a href="src/pages/old-orders.html">Mes commandes</a></li>
-          </ul>
-        </label>
+        </div>
       </div>
-    </header>
-    <div class="main-basket">
-      <div id="table-container" class="basket__table"></div>
-      <div id="form-container" class="basket__form">
-        <form type="post" class="order-form">
-          <label for="lastname">Nom :</label>
-          <input
-            type="text"
-            id="lastname"
-            name="lastname"
-            maxlength="20"
-            required
-            size="10"
-          />
-          <label for="firstname">Prénom :</label>
-          <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            maxlength="30"
-            required
-            size="10"
-          />
-          <label for="address">Adresse :</label>
-          <input type="text" id="address" name="address" required size="10" />
-          <label for="city">Ville :</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            maxlength="20"
-            required
-            size="10"
-          />
-          <label for="mail">Mail :</label>
-          <input type="email" id="mail" name="mail" required size="10" />
-        </form>
-        <button id="order-btn">Commander</button>
-      </div>
-      <a href="../../index.html">Nos produits</a>
+
+      <footer class="footer">
+        <img class="footer__img" src="../../images/teddy_1.jpg" />
+        <div class="footer__contact">
+          <h3>Nous contacter</h3>
+          <p class="footer__contact--descr">
+            Célian et son équipe sont toujours là pour vous répondre
+          </p>
+          <div class="footer__contact--logo">
+            <a href="contact.html"><span class="fas fa-paper-plane"></span></a>
+            <a href="FAQ.html"><span class="fas fa-question"></span></a>
+          </div>
+        </div>
+        <div class="vertical-separation"></div>
+        <div class="footer__us">
+          <h3>Nous.</h3>
+          <a>Notre vision</a>
+          <a>Vos avis</a>
+          <a>Nous rejoindre</a>
+        </div>
+        <div class="footer__follow">
+          <h3>Nous suivre.</h3>
+          <div class="footer__follow--icon">
+            <a href="facebook.com/Oriteddy">
+              <span class="fab fa-facebook-f"></span>
+            </a>
+            <a href="twitter.com/Oriteddy">
+              <span class="fab fa-twitter"></span>
+            </a>
+            <a href="tiktok.com/Oriteddy">
+              <span class="fab fa-tiktok"></span>
+            </a>
+            <a href="instagram.com/Oriteddy">
+              <span class="fab fa-instagram"></span>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
