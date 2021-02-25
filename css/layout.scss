@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,700;1,800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import 'variables.scss';
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -16,7 +15,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   background: white;
-  font-family: 'JosefinThin', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 em {

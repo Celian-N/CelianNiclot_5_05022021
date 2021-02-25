@@ -31,18 +31,17 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
 //Create the product container
 const setProduct = (data) => {
   productContainer.appendChild(product(data));
+  productContainer.appendChild(backButton());
+  productContainer.classList = 'product-container';
 };
 //Create the product main container from productDetails
 const product = (data) => {
   const div = document.createElement('div');
   div.classList = 'product';
 
-  const para = document.createElement('p');
-  para.classList = 'name';
-  para.textContent = `${data.name}`;
-
-  div.appendChild(para);
   div.appendChild(productDetails(data));
+  div.appendChild(productImg(data));
+  div.appendChild(productFeatures(data));
 
   return div;
 };
@@ -50,31 +49,47 @@ const product = (data) => {
 //create the product details from product's image and product's description
 const productDetails = (data) => {
   const div = document.createElement('div');
-  div.classList = 'product-details';
-  div.appendChild(productImg(data));
-  div.appendChild(productDescr(data));
+  div.classList = 'product__details';
+
+  const divDescr = document.createElement('div');
+  divDescr.classList = 'product__details--descr';
+  divDescr.textContent = `${data.description}`;
+
+  const title = document.createElement('p');
+  title.classList = 'product__details--name';
+  title.textContent = `${data.name.toUpperCase()}`;
+
+  div.appendChild(title);
+  div.appendChild(divDescr);
 
   return div;
 };
 //Create the product image
 const productImg = (data) => {
   const img = document.createElement('img');
-  img.classList = 'product-details__img';
+  img.classList = 'product__img';
   img.src = `${data.imageUrl}`;
   img.alt = `Image de l'ourson ${data.name}`;
   return img;
 };
 
 //Create the product description
-const productDescr = (data) => {
+const productFeatures = (data) => {
   const div = document.createElement('div');
-  div.classList = 'product-details__descr';
+  div.classList = 'product__features';
 
-  const para = document.createElement('p');
-  para.classList = 'product-details__descr--descr';
-  para.textContent = `${data.description}`;
+  const divPrice = document.createElement('div');
+  divPrice.classList = 'product__features--price';
 
-  div.appendChild(para);
+  const spanName = document.createElement('span');
+  spanName.textContent = 'Prix';
+  const spanPrice = document.createElement('span');
+  spanPrice.textContent = `${data.price / 100} €`;
+  spanPrice.classList = 'price';
+
+  divPrice.appendChild(spanName);
+  divPrice.appendChild(spanPrice);
+  div.appendChild(divPrice);
   div.appendChild(productColors(data));
   div.appendChild(productOrder(data));
   return div;
@@ -83,11 +98,11 @@ const productDescr = (data) => {
 //Create the product's color selection from options loop of data.colors
 const productColors = (data) => {
   const div = document.createElement('div');
-  div.classList = 'product-details__descr--colors';
+  div.classList = 'product__features--colors';
 
   const label = document.createElement('label');
   label.htmlFor = 'color-select';
-  label.textContent = 'Couleurs :';
+  label.textContent = 'Couleurs';
 
   const select = document.createElement('select');
   select.id = 'color-select';
@@ -110,10 +125,6 @@ const productColors = (data) => {
 //Create the product add to basket button and and product price
 //It also set addBasketButton to the created button
 const productOrder = (data) => {
-  const span = document.createElement('span');
-  span.classList = 'order__price';
-  span.textContent = `${data.price / 100} €`;
-
   const button = document.createElement('button');
   button.classList = 'order__btn';
   button.id = 'order-btn';
@@ -124,7 +135,6 @@ const productOrder = (data) => {
   const div = document.createElement('div');
   div.classList = 'order';
 
-  div.appendChild(span);
   div.appendChild(button);
 
   return div;
@@ -181,4 +191,25 @@ const updateBasketPrice = (selectedTeddy) => {
   localStorage.setItem('basketPrice', newBasketPrice);
 
   basketPrice.textContent = `${localStorage.getItem('basketPrice')},00 €`;
+};
+
+const backButton = () => {
+  const div = document.createElement('div');
+  div.classList = 'back';
+  const btn = document.createElement('button');
+  btn.classList = 'back__btn';
+  const spanLogo = document.createElement('span');
+  spanLogo.classList = 'fas fa-chevron-left';
+  const span = document.createElement('span');
+  span.classList = 'back__title';
+  span.textContent = 'Retour';
+  btn.appendChild(spanLogo);
+  div.appendChild(btn);
+  div.appendChild(span);
+
+  div.addEventListener('click', () => {
+    window.history.back();
+  });
+
+  return div;
 };
