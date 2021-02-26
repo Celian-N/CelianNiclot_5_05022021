@@ -33,7 +33,7 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
 const setProduct = (data) => {
   productContainer.appendChild(product(data));
   productContainer.appendChild(backButton());
-  productContainer.classList = 'product-container';
+  productContainer.classList = 'product-container glassmorphism';
 };
 //Create the product main container from productDetails
 const product = (data) => {
