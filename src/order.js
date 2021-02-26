@@ -26,7 +26,7 @@ const setOrder = () => {
   const buttonReturn = document.createElement('a');
   buttonReturn.textContent = "Retourner à l'acceuil";
   buttonReturn.classList = 'order__btn';
-  buttonReturn.href = '../../index.html';
+  buttonReturn.href = './index.html';
 
   const buttonOrders = document.createElement('a');
   buttonOrders.textContent = 'Voir votre commande';

@@ -48,7 +48,7 @@ const productLink = (data) => {
   div.appendChild(productDescr(data));
 
   const link = document.createElement('a');
-  link.href = `./src/pages/product.html?id=${data._id}`;
+  link.href = `./product.html?id=${data._id}`;
 
   link.appendChild(div);
   return link;

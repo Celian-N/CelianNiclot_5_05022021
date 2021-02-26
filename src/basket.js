@@ -41,7 +41,7 @@ const setEmptyBasket = () => {
   const button = document.createElement('a');
   button.classList = 'basket__empty--btn';
   button.textContent = 'Découvrez nos peluches';
-  button.href = '../../index.html';
+  button.href = './products.html';
 
   div.appendChild(span);
   div.appendChild(button);
