@@ -12,7 +12,8 @@ window.onload = () => {
 
 let teddyBear;
 let addBasketBtn;
-let selectColor;
+//let selectColor;
+let selectedColor;
 
 //Get product from product ID in API and launch setProduct function to create DOM Elements. Then, it launch function that listen event from color select and add to baket button
 fetch(`http://localhost:3000/api/teddies/${productId}`)
@@ -57,7 +58,7 @@ const productDetails = (data) => {
 
   const title = document.createElement('p');
   title.classList = 'product__details--name';
-  title.textContent = `${data.name.toUpperCase()}`;
+  title.textContent = `${data.name.toUpperCase()}.`;
 
   div.appendChild(title);
   div.appendChild(divDescr);
@@ -91,40 +92,92 @@ const productFeatures = (data) => {
   divPrice.appendChild(spanPrice);
   div.appendChild(divPrice);
   div.appendChild(productColors(data));
-  div.appendChild(productOrder(data));
+  div.appendChild(productOrder());
   return div;
 };
+
+//Create the product's color selection from options loop of data.colors
+// const productColors = (data) => {
+//   const div = document.createElement('div');
+//   div.classList = 'product__features--colors';
+
+//   const label = document.createElement('label');
+//   label.htmlFor = 'color-select';
+//   label.textContent = 'Couleurs';
+
+//   const select = document.createElement('select');
+//   select.id = 'color-select';
+//   select.name = 'colors';
+
+//   for (color of data.colors) {
+//     const option = document.createElement('option');
+//     option.value = color;
+//     option.textContent = `${color}`;
+//     select.appendChild(option);
+//   }
+//   selectColor = select;
+
+//   div.appendChild(label);
+//   div.appendChild(select);
+
+//   return div;
+// };
 
 //Create the product's color selection from options loop of data.colors
 const productColors = (data) => {
   const div = document.createElement('div');
   div.classList = 'product__features--colors';
+  const span = document.createElement('span');
+  span.textContent = 'Couleurs';
+  span.classList = 'colors__title';
 
-  const label = document.createElement('label');
-  label.htmlFor = 'color-select';
-  label.textContent = 'Couleurs';
+  const divColors = document.createElement('div');
+  divColors.classList = 'colors__list';
+  let isFirstColor = true;
 
-  const select = document.createElement('select');
-  select.id = 'color-select';
-  select.name = 'colors';
+  for (const color of data.colors) {
+    const radio = document.createElement('input');
+    radio.classList = 'colors__radio';
+    radio.setAttribute('type', 'radio');
+    radio.id = `${color}`;
+    radio.value = `${color}`;
+    radio.name = 'color';
+    const label = document.createElement('label');
+    label.classList = 'colors__label';
+    label.htmlFor = `${color}`;
+    const divLabel = document.createElement('div');
+    divLabel.textContent = `${color}`;
+    divLabel.classList = 'colors__label--title';
 
-  for (color of data.colors) {
-    const option = document.createElement('option');
-    option.value = color;
-    option.textContent = `${color}`;
-    select.appendChild(option);
+    if (color == 'Dark brown') {
+      label.style.backgroundColor = '#654321';
+    }
+    if (color == 'Pale brown') {
+      label.style.backgroundColor = '#987654';
+    }
+    label.style.backgroundColor = `${color}`;
+    radio.addEventListener('change', () => {
+      selectedColor = radio.value;
+    });
+
+    isFirstColor ? (radio.checked = true) : (radio.checked = false);
+
+    label.appendChild(divLabel);
+    divColors.appendChild(radio);
+    divColors.appendChild(label);
+
+    isFirstColor = false;
   }
-  selectColor = select;
 
-  div.appendChild(label);
-  div.appendChild(select);
+  div.appendChild(span);
+  div.appendChild(divColors);
 
   return div;
 };
 
 //Create the product add to basket button and and product price
 //It also set addBasketButton to the created button
-const productOrder = (data) => {
+const productOrder = () => {
   const button = document.createElement('button');
   button.classList = 'order__btn';
   button.id = 'order-btn';
@@ -142,13 +195,13 @@ const productOrder = (data) => {
 
 //Enable the button to be reactive when clicked and select element to send the choosen element and update basket
 const basketListener = (selectedTeddy) => {
-  let selectedIndex = 0;
-  let selectedColor = selectedTeddy.colors[selectedIndex];
+  // let selectedIndex = 0;
+  // let selectedColor = selectedTeddy.colors[selectedIndex];
 
-  selectColor.addEventListener('change', () => {
-    selectedIndex = selectColor.selectedIndex;
-    selectedColor = selectColor.options[selectedIndex].value;
-  });
+  // selectColor.addEventListener('change', () => {
+  //   selectedIndex = selectColor.selectedIndex;
+  //   selectedColor = selectColor.options[selectedIndex].value;
+  // });
 
   addBasketBtn.addEventListener('click', () => {
     if (!localStorage.getItem('basket')) {
@@ -156,6 +209,7 @@ const basketListener = (selectedTeddy) => {
       localStorage.setItem('basketDetails', JSON.stringify([]));
     }
     selectedTeddy.selectedColor = selectedColor;
+    console.log(selectedTeddy.selectedColor);
 
     const basketTable = JSON.parse(localStorage.getItem('basket'));
     basketTable.push(`${selectedTeddy._id}`);
