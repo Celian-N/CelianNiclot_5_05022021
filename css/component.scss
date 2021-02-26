@@ -83,7 +83,59 @@
   align-items: center;
 }
 //------------PAGES
+//---HOME PAGE
 
+.home {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(126deg, #ffffff66 0%, #ffffff24 100%);
+  box-shadow: 0px 3px 50px #0000000f;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(#adcec9, 0.2);
+  border-radius: 30px;
+  min-height: 300px;
+  margin-top: 50px;
+  position: relative;
+  padding: 30px 30px;
+  & img {
+    width: 50%;
+  }
+  &__descr {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-around;
+    width: 50%;
+    &--para {
+      font-weight: 300;
+    }
+    &--btn {
+      align-self: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 50px;
+      border-radius: 20px;
+      background: #adcec9;
+      border: 0;
+      height: 40px;
+      padding: 0 20px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 400ms;
+      font-family: 'Josefin Sans', sans-serif;
+      &:hover {
+        transform: scale(0.97);
+      }
+    }
+  }
+}
 //---PRODUCTS PAGE
 
 .main {
