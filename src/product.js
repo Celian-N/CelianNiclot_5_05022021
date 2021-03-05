@@ -25,6 +25,7 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
     return teddy;
   })
   .then((selectedTeddy) => {
+    selectedColor = selectedTeddy.colors[0];
     basketListener(selectedTeddy);
   })
   .catch(() => alert('Erreur :' + error));
@@ -149,13 +150,17 @@ const productColors = (data) => {
     divLabel.textContent = `${color}`;
     divLabel.classList = 'colors__label--title';
 
-    if (color == 'Dark brown') {
-      label.style.backgroundColor = '#654321';
+    switch (color) {
+      case 'Dark brown':
+        label.style.backgroundColor = '#654321';
+        break;
+      case 'Pale brown':
+        label.style.backgroundColor = '#987654';
+        break;
+      default:
+        label.style.backgroundColor = `${color}`;
     }
-    if (color == 'Pale brown') {
-      label.style.backgroundColor = '#987654';
-    }
-    label.style.backgroundColor = `${color}`;
+
     radio.addEventListener('change', () => {
       selectedColor = radio.value;
     });
