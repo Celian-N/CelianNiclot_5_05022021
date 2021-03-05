@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.min.css" />
 
     <script
       src="https://kit.fontawesome.com/4ae471da8b.js"
@@ -56,7 +56,7 @@
           </span>
           <form type="post" class="user-form">
             <p>
-              <label for="lastname">Nom :</label>
+              <label for="lastname" class="required">Nom :</label>
               <input
                 type="text"
                 id="lastname"
@@ -67,7 +67,7 @@
               />
             </p>
             <p>
-              <label for="firstname">Prénom :</label>
+              <label for="firstname" class="required">Prénom :</label>
               <input
                 type="text"
                 id="firstname"
@@ -78,7 +78,7 @@
               />
             </p>
             <p>
-              <label for="address">Adresse :</label>
+              <label for="address" class="required">Adresse :</label>
               <input
                 type="text"
                 id="address"
@@ -88,7 +88,7 @@
               />
             </p>
             <p>
-              <label for="city">Ville :</label>
+              <label for="city" class="required">Ville :</label>
               <input
                 type="text"
                 id="city"
@@ -99,7 +99,7 @@
               />
             </p>
             <p>
-              <label for="mail">Mail :</label>
+              <label for="mail" class="required">Mail :</label>
               <input type="email" id="mail" name="mail" required size="10" />
             </p>
           </form>
