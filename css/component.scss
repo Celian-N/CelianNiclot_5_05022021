@@ -6,6 +6,11 @@
 .display-none {
   display: none;
 }
+.required:after {
+  content: ' *';
+  font-size: 20px;
+  color: darken(#adcec9, 30%);
+}
 .container {
   width: 100%;
   height: 100%;
@@ -105,7 +110,7 @@
   position: relative;
   padding: 30px 30px;
   & img {
-    width: 50%;
+    width: 35%;
   }
   &__descr {
     height: 100%;
@@ -126,9 +131,8 @@
       border-radius: 20px;
       background: #adcec9;
       border: 0;
-      height: 40px;
-      padding: 0 20px;
-      font-size: 15px;
+      padding: 10px 30px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       transition: transform 400ms;
@@ -158,7 +162,7 @@
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 100px 20px;
+  grid-gap: 120px 20px;
 }
 .product-card {
   position: relative;
@@ -187,7 +191,7 @@
   &__img {
     position: absolute;
     top: -100px;
-    height: 250px;
+    height: 210px;
     object-fit: contain;
     border-radius: 10px;
     transition: top 400ms;
@@ -364,9 +368,8 @@
     background: #adcec9;
     box-shadow: 2px 2px 20px grey;
     border: 0;
-    height: 40px;
-    padding: 0 20px;
-    font-size: 15px;
+    padding: 15px 30px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: transform 400ms;
@@ -456,9 +459,8 @@
       border-radius: 20px;
       background: #adcec9;
       border: 0;
-      height: 40px;
-      padding: 0 20px;
-      font-size: 15px;
+      padding: 10px 30px;
+      font-size: 18px;
       cursor: pointer;
       transition: transform 400ms;
       &:hover {
@@ -468,6 +470,7 @@
   }
   &__table {
     border-spacing: 0 10px;
+    text-align: center;
     & th {
       padding: 15px;
       background: rgba(#adcec9, 0.7);
@@ -475,7 +478,7 @@
     & th:nth-child(1) {
       border-radius: 10px 0 0 10px;
     }
-    & th:nth-child(3) {
+    & th:nth-child(4) {
       border-radius: 0 10px 10px 0;
     }
     & td {
@@ -495,6 +498,7 @@
     align-items: center;
     &--img {
       width: 50px;
+      margin-right: 10px;
     }
     &--delete {
       display: flex;
@@ -538,8 +542,8 @@
         box-sizing: border-box;
         & input {
           width: 200px;
-          color: white;
-          background: rgba(black, 0.5);
+          color: black;
+          background: rgb(192, 192, 192);
           border-radius: 3px;
           border: 0;
           padding: 10px;
@@ -554,9 +558,8 @@
       border-radius: 20px;
       background: #adcec9;
       border: 0;
-      height: 40px;
-      padding: 0 20px;
-      font-size: 15px;
+      padding: 10px 30px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       transition: transform 400ms;
@@ -630,8 +633,8 @@
       box-sizing: border-box;
       & input {
         width: 200px;
-        color: white;
-        background: rgba(black, 0.5);
+        color: black;
+        background: rgb(192, 192, 192);
         border-radius: 3px;
         border: 0;
         padding: 10px;
@@ -769,6 +772,8 @@
   }
 }
 
+//---FOOTER
+
 .footer {
   display: flex;
   flex-direction: row;
@@ -873,4 +878,84 @@
     width: 0px;
     margin: 0 40px;
   }
+}
+
+//---OLD-ORDERS
+
+#old-orders-table {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 30px;
+  min-height: 300px;
+  margin: 50px 0;
+  position: relative;
+  padding: 30px 30px;
+  font-weight: 300;
+}
+.orders__table {
+  width: 90%;
+  border-spacing: 0px 10px;
+  text-align: center;
+  & th {
+    padding: 15px;
+    background: rgba(#adcec9, 0.7);
+  }
+  & th:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+  }
+  & th:nth-child(5) {
+    border-radius: 0 10px 10px 0;
+  }
+  & td {
+    padding: 10px 20px;
+    background: rgba(#adcec9, 0.2);
+  }
+  & td:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+  }
+  & td:nth-child(5) {
+    border-radius: 0 10px 10px 0;
+  }
+}
+.main-rows {
+  height: 50px;
+}
+.details-row {
+  display: none;
+  & td {
+    padding: 0px !important;
+    background: rgb(192, 192, 192, 0.3);
+    font-weight: 400;
+  }
+
+  &__img {
+    width: 50px;
+  }
+}
+.show {
+  display: revert !important;
+  height: 50px;
+}
+.toggle-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #adcec9;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  transform: rotate(0deg);
+  transition: transform 300ms;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+.bg-red {
+  background: red;
 }
