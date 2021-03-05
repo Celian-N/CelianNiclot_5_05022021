@@ -75,14 +75,17 @@ const basketTable = (datas) => {
   const tableMenu1 = document.createElement('th');
   const tableMenu2 = document.createElement('th');
   const tableMenu3 = document.createElement('th');
+  const tableMenu4 = document.createElement('th');
 
   tableMenu1.textContent = 'Ourson';
   tableMenu2.textContent = 'Couleur';
   tableMenu3.textContent = 'Prix';
+  tableMenu4.textContent = ' ';
 
   tableRow.appendChild(tableMenu1);
   tableRow.appendChild(tableMenu2);
   tableRow.appendChild(tableMenu3);
+  tableRow.appendChild(tableMenu4);
 
   table.appendChild(tableRow);
 
@@ -237,9 +240,9 @@ const orderBasket = () => {
       window.location.href = `order.html?id=${res.orderId}`;
       resetBasket();
       localStorage.setItem('contact', JSON.stringify(requestContact));
-      localStorage.setItem('myOrders', JSON.stringify(res));
+      setMyOrder(res);
     })
-    .catch(() => alert('Erreur :'));
+    .catch((error) => alert('Erreur :', error));
 };
 
 //reset basket after ordering and set contact to localStorage to get it in order-page
@@ -250,6 +253,34 @@ const resetBasket = () => {
 
   basketPrice.textContent = '0,00 €';
   tableContainer.removeChild(tableContainer.childNodes[0]);
+};
+
+//Set history orders
+const setMyOrder = (order) => {
+  let orders;
+  if (!localStorage.getItem('myOrders')) {
+    orders = [];
+  } else {
+    orders = JSON.parse(localStorage.getItem('myOrders'));
+  }
+
+  const newOrder = order;
+  const date = getDate();
+  newOrder.date = date;
+
+  orders.push(newOrder);
+
+  localStorage.setItem('myOrders', JSON.stringify(orders));
+};
+
+//Get Today date
+const getDate = () => {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yyyy = today.getFullYear();
+
+  return dd + '/' + mm + '/' + yyyy;
 };
 
 //REGEX to validate email
