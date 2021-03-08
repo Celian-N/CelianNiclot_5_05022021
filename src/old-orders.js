@@ -2,6 +2,18 @@ const oldOrdersTable = document.getElementById('old-orders-table');
 const basketPrice = document.getElementById('basket-price');
 const basketIndicator = document.getElementById('basket-indicator');
 
+function switchOldOrders(e) {
+  const orders = JSON.parse(localStorage.getItem('myOrders')).reverse();
+  if (oldOrdersTable.hasChildNodes()) {
+    oldOrdersTable.removeChild(oldOrdersTable.firstChild);
+  }
+  if (e.matches) {
+    setOrdersContainer(orders);
+  } else {
+    setOrdersTable(orders);
+  }
+}
+
 window.onload = () => {
   if (
     !localStorage.getItem('myOrders') ||
@@ -9,7 +21,12 @@ window.onload = () => {
   ) {
     oldOrdersTable.appendChild(setEmptyOrders());
   } else {
-    setOrdersTable(JSON.parse(localStorage.getItem('myOrders')).reverse());
+    //Check if device is 768px max width to change set Table or Container
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    mediaQuery.addListener(switchOldOrders);
+
+    // Run it initially
+    switchOldOrders(mediaQuery);
   }
   setBasketPrice();
   setBasketIndicator(localStorage.getItem('basket'));
@@ -68,8 +85,11 @@ const ordersRows = (data) => {
   const tableDescr4 = document.createElement('td');
   const tableDescr5 = document.createElement('td');
   const divBtn = document.createElement('div');
-  divBtn.classList = 'toggle-btn fas fa-chevron-down';
+  divBtn.classList = 'toggle-btn';
   divBtn.id = `btn-${data.orderId}`;
+  const spanBtn = document.createElement('span');
+  spanBtn.classList = 'fas fa-chevron-down';
+  divBtn.appendChild(spanBtn);
 
   divBtn.addEventListener('click', () => {
     const detailsRows = document.getElementsByClassName(`${data.orderId}`);
@@ -145,4 +165,130 @@ const setEmptyOrders = () => {
   div.appendChild(button);
 
   return div;
+};
+
+//___----____----_____-----______------_____----___
+
+//Set ordersTable if orders include products
+const setOrdersContainer = (datas) => {
+  oldOrdersTable.appendChild(ordersContainer(datas));
+};
+
+//Create orders table of products
+const ordersContainer = (datas) => {
+  const divContainer = document.createElement('div');
+  divContainer.classList = 'orders';
+
+  const span = document.createElement('span');
+  span.textContent = 'Vos commandes';
+  divContainer.appendChild(span);
+
+  for (const data of datas) {
+    const orderContainer = document.createElement('div');
+    orderContainer.classList = 'order-container';
+
+    const orderDetailsContainer = document.createElement('div');
+    orderDetailsContainer.classList = 'order-details-container';
+    orderDetailsContainer.id = `${data.orderId}`;
+
+    const divBtn = document.createElement('div');
+    divBtn.classList = 'toggle-btn';
+    divBtn.id = `btn-${data.orderId}`;
+    const spanBtn = document.createElement('span');
+    spanBtn.classList = 'fas fa-chevron-down';
+    divBtn.appendChild(spanBtn);
+
+    divBtn.addEventListener('click', () => {
+      const detailsRow = document.getElementById(`${data.orderId}`);
+      document.getElementById(`btn-${data.orderId}`).classList.toggle('rotate');
+      detailsRow.classList.toggle('show');
+    });
+
+    orderContainer.appendChild(ordersRow(data));
+    orderContainer.appendChild(divBtn);
+
+    divContainer.appendChild(orderContainer);
+    for (const product of data.products) {
+      orderDetailsContainer.appendChild(orderDetails(product, data.orderId));
+    }
+    divContainer.appendChild(orderDetailsContainer);
+  }
+
+  return divContainer;
+};
+
+//Create orders details
+//Set every column of table
+const ordersRow = (data) => {
+  const div = document.createElement('div');
+  div.classList = 'order-container__descr';
+
+  const divOrder = document.createElement('div');
+  divOrder.classList = 'order-container__nbr';
+  divOrder.textContent = `Commande n°${data.orderId}`;
+
+  const divDetails = document.createElement('div');
+  divDetails.classList = 'order-container__details';
+  const divArticle = document.createElement('div');
+  divArticle.classList = 'order-container__details--article';
+  const divPrice = document.createElement('div');
+  divPrice.classList = 'order-container__details--price';
+  const divDate = document.createElement('div');
+  divDate.classList = 'order-container__details--date';
+  const divSeparation1 = document.createElement('div');
+  divSeparation1.classList = 'order-container__details--separation';
+  const divSeparation2 = document.createElement('div');
+  divSeparation2.classList = 'order-container__details--separation';
+
+  divArticle.textContent = `${data.products.length} ${
+    data.products.length > 1 ? 'articles' : 'article'
+  }`;
+
+  let totalPrice = 0;
+
+  for (const product of data.products) {
+    totalPrice += product.price / 100;
+  }
+  divPrice.textContent = `${totalPrice},00 €`;
+
+  divDate.textContent = `${data.date}`;
+
+  divDetails.appendChild(divArticle);
+  divDetails.appendChild(divSeparation1);
+  divDetails.appendChild(divPrice);
+  divDetails.appendChild(divSeparation2);
+  divDetails.appendChild(divDate);
+
+  div.appendChild(divOrder);
+  div.appendChild(divDetails);
+
+  return div;
+};
+
+const orderDetails = (product, orderId) => {
+  const divDetailsContainer = document.createElement('div');
+  divDetailsContainer.classList = `details-container ${orderId}`;
+
+  const divImg = document.createElement('div');
+  const divName = document.createElement('div');
+  const divPrice = document.createElement('div');
+
+  const img = document.createElement('img');
+  img.classList = 'details-container__img';
+  img.src = `${product.imageUrl}`;
+  img.alt = `Image de l'ourson ${product.name}`;
+
+  const link = document.createElement('a');
+  link.href = `./product.html?id=${product._id}`;
+  link.textContent = `${product.name}`;
+
+  divImg.appendChild(img);
+  divName.appendChild(link);
+  divPrice.textContent = `${product.price / 100},00€`;
+
+  divDetailsContainer.appendChild(divImg);
+  divDetailsContainer.appendChild(divName);
+  divDetailsContainer.appendChild(divPrice);
+
+  return divDetailsContainer;
 };
