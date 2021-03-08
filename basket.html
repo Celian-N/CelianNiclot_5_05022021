@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="full-width header">
+      <header class="header">
         <a href="./index.html" class="header__logo"
           ><img
             src="./images/teddy-bear.svg"
@@ -23,17 +23,18 @@
             height="40"
           />OriTeddy</a
         >
-        <div class="header-tabs">
+        <nav class="header-tabs">
           <a class="header__products" href="./products.html"> Nos peluches </a>
-          <div class="vertical-separation__smaller"></div>
+          <div class="vertical-separation__smaller--1"></div>
           <a class="header__basket" href="./basket.html">
             <span id="basket-price"></span>
             <img src="./images/Cart.svg" alt="Logo du panier" height="25" />
             <div id="basket-indicator"></div>
           </a>
+          <div class="vertical-separation__smaller--2"></div>
           <label class="dropdown">
             <div class="dropdown__name">
-              PROFIL
+              <span id="dropdown__title"></span>
               <div class="dropdown__btn">
                 <span class="fas fa-user"></span>
               </div>
@@ -47,7 +48,7 @@
               <li><a href="./old-orders.html">Mes commandes</a></li>
             </ul>
           </label>
-        </div>
+        </nav>
       </header>
 
       <div class="main main-basket animated-background">
@@ -118,7 +119,7 @@
           />OriTeddy</a
         >
         <div class="footer__contact">
-          <h3>Nous contacter</h3>
+          <h3>Nous contacter.</h3>
           <p class="footer__contact--descr">
             Célian et son équipe sont toujours là pour vous répondre
           </p>
