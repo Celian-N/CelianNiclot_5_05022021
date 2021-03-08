@@ -40,10 +40,13 @@ const setProduct = (data) => {
 const product = (data) => {
   const div = document.createElement('div');
   div.classList = 'product';
+  const divImgFeatures = document.createElement('div');
+  divImgFeatures.classList = 'product__img-features-container';
 
   div.appendChild(productDetails(data));
-  div.appendChild(productImg(data));
-  div.appendChild(productFeatures(data));
+  divImgFeatures.appendChild(productImg(data));
+  divImgFeatures.appendChild(productFeatures(data));
+  div.appendChild(divImgFeatures);
 
   return div;
 };
