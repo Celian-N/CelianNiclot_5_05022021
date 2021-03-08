@@ -25,12 +25,12 @@ const setOrder = () => {
 
   const buttonReturn = document.createElement('a');
   buttonReturn.textContent = "Retourner à l'acceuil";
-  buttonReturn.classList = 'order__btn';
+  buttonReturn.classList = 'order__button';
   buttonReturn.href = './index.html';
 
   const buttonOrders = document.createElement('a');
   buttonOrders.textContent = 'Voir votre commande';
-  buttonOrders.classList = 'order__btn';
+  buttonOrders.classList = 'order__button';
   buttonOrders.href = './old-orders.html';
 
   divButton.appendChild(buttonReturn);
