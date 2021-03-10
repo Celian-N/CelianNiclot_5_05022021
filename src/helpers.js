@@ -18,3 +18,18 @@ const setBasketIndicator = (data) => {
   basketIndicator.classList = 'basket-indicator';
   basketIndicator.textContent = `${JSON.parse(data).length}`;
 };
+
+//Check if device is 768px max width to change textContent of dropdown button
+const dropdownTitle = document.getElementById('dropdown__title');
+
+const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+mediaQuery.addListener(handleDeviceChange);
+
+function handleDeviceChange(e) {
+  if (e.matches) dropdownTitle.textContent = '';
+  else dropdownTitle.textContent = 'PROFIL';
+}
+
+// Run it initially
+handleDeviceChange(mediaQuery);

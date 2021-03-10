@@ -10,9 +10,8 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="./src/helpers.js" defer></script>
-    <script type="text/javascript" src="./src/index.js" defer></script>
-
-    <title>OriTeddy</title>
+    <script type="text/javascript" src="./src/basket.js" defer></script>
+    <title>Mon Panier</title>
   </head>
   <body>
     <div class="container">
@@ -52,21 +51,61 @@
         </nav>
       </header>
 
-      <div class="main animated-background">
-        <div class="home glassmorphism">
-          <img src="./images/teddy-home.png" alt="Ourson en peluche" />
-          <div class="home__descr">
-            <h1>OriTeddy.</h1>
-            <h2>L'ours qu'il vous faut.</h2>
-            <p class="home__descr--para">
-              Nos ours en peluche sont imaginés par notre équipe de créateurs
-              basée à paris. Des ours tendances, faits à la main, dotés d'une
-              mousse en pure laine d emouton et personnalisables selon vos
-              désirs
-            </p>
-            <a class="home__descr--btn" href="./products.html">
-              Découvrez les !
-            </a>
+      <div class="main main-basket animated-background">
+        <div class="basket glassmorphism">
+          <div id="table-container" class="basket__table"></div>
+          <div id="form-container" class="basket__form">
+            <p class="basket__form--title">Vos informations</p>
+            <form type="post" class="order-form">
+              <p>
+                <label for="lastname" class="required">Nom :</label>
+                <input
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  maxlength="20"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="firstname" class="required">Prénom :</label>
+                <input
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  maxlength="30"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="address" class="required">Adresse :</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="city" class="required">Ville :</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  maxlength="20"
+                  required
+                  size="10"
+                />
+              </p>
+              <p>
+                <label for="mail" class="required">Mail :</label>
+                <input type="email" id="mail" name="mail" required size="10" />
+              </p>
+            </form>
+            <button id="order-btn">Commander</button>
           </div>
         </div>
       </div>

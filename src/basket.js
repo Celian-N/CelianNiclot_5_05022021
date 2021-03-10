@@ -34,7 +34,18 @@ window.onload = () => {
 const setEmptyBasket = () => {
   const div = document.createElement('div');
   div.classList = 'basket__empty';
-  div.textContent = 'Aucun article dans le panier ...';
+
+  const span = document.createElement('span');
+  span.textContent = "Vous n'avez aucun article dans votre panier...";
+
+  const button = document.createElement('a');
+  button.classList = 'basket__empty--btn';
+  button.textContent = 'Découvrez nos peluches';
+  button.href = './products.html';
+
+  div.appendChild(span);
+  div.appendChild(button);
+
   return div;
 };
 
@@ -46,6 +57,7 @@ const setBasketTable = (datas) => {
 //Function to reload basket table when a product is delete from basket
 const reloadBasketTable = (datas) => {
   if (datas.length <= 0) {
+    setFormContainer();
     return tableContainer.replaceChild(
       setEmptyBasket(),
       tableContainer.childNodes[0]
@@ -58,7 +70,6 @@ const reloadBasketTable = (datas) => {
 const basketTable = (datas) => {
   const table = document.createElement('table');
   table.classList = 'basket__table';
-  table.setAttribute('cellpadding', '15');
 
   const tableRow = document.createElement('tr');
   const tableMenu1 = document.createElement('th');
@@ -68,8 +79,8 @@ const basketTable = (datas) => {
 
   tableMenu1.textContent = 'Ourson';
   tableMenu2.textContent = 'Couleur';
-  tableMenu3.textContent = 'Quantité';
-  tableMenu4.textContent = 'Prix';
+  tableMenu3.textContent = 'Prix';
+  tableMenu4.textContent = ' ';
 
   tableRow.appendChild(tableMenu1);
   tableRow.appendChild(tableMenu2);
@@ -94,7 +105,6 @@ const basketDetails = (data) => {
   const tableDescr2 = document.createElement('td');
   const tableDescr3 = document.createElement('td');
   const tableDescr4 = document.createElement('td');
-  const tableDescr5 = document.createElement('td');
 
   const deleteBtn = document.createElement('button');
   deleteBtn.classList = 'basket__product--delete';
@@ -137,16 +147,14 @@ const basketDetails = (data) => {
   tableDescr1.classList = 'basket__product';
 
   tableDescr2.textContent = `${data.color}`;
-  tableDescr3.textContent = 'Quantité';
-  tableDescr4.textContent = `${data.price},00 €`;
+  tableDescr3.textContent = `${data.price},00 €`;
 
-  tableDescr5.appendChild(deleteBtn);
+  tableDescr4.appendChild(deleteBtn);
 
   tableRow.appendChild(tableDescr1);
   tableRow.appendChild(tableDescr2);
   tableRow.appendChild(tableDescr3);
   tableRow.appendChild(tableDescr4);
-  tableRow.appendChild(tableDescr5);
 
   return tableRow;
 };
@@ -232,9 +240,9 @@ const orderBasket = () => {
       window.location.href = `order.html?id=${res.orderId}`;
       resetBasket();
       localStorage.setItem('contact', JSON.stringify(requestContact));
-      localStorage.setItem('myOrders', JSON.stringify(res));
+      setMyOrder(res);
     })
-    .catch(() => alert('Erreur :'));
+    .catch((error) => alert('Erreur :', error));
 };
 
 //reset basket after ordering and set contact to localStorage to get it in order-page
@@ -245,6 +253,34 @@ const resetBasket = () => {
 
   basketPrice.textContent = '0,00 €';
   tableContainer.removeChild(tableContainer.childNodes[0]);
+};
+
+//Set history orders
+const setMyOrder = (order) => {
+  let orders;
+  if (!localStorage.getItem('myOrders')) {
+    orders = [];
+  } else {
+    orders = JSON.parse(localStorage.getItem('myOrders'));
+  }
+
+  const newOrder = order;
+  const date = getDate();
+  newOrder.date = date;
+
+  orders.push(newOrder);
+
+  localStorage.setItem('myOrders', JSON.stringify(orders));
+};
+
+//Get Today date
+const getDate = () => {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yyyy = today.getFullYear();
+
+  return dd + '/' + mm + '/' + yyyy;
 };
 
 //REGEX to validate email

@@ -10,9 +10,8 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="./src/helpers.js" defer></script>
-    <script type="text/javascript" src="./src/index.js" defer></script>
-
-    <title>OriTeddy</title>
+    <script type="text/javascript" src="./src/order.js" defer></script>
+    <title>Ma commande</title>
   </head>
   <body>
     <div class="container">
@@ -53,24 +52,8 @@
       </header>
 
       <div class="main animated-background">
-        <div class="home glassmorphism">
-          <img src="./images/teddy-home.png" alt="Ourson en peluche" />
-          <div class="home__descr">
-            <h1>OriTeddy.</h1>
-            <h2>L'ours qu'il vous faut.</h2>
-            <p class="home__descr--para">
-              Nos ours en peluche sont imaginés par notre équipe de créateurs
-              basée à paris. Des ours tendances, faits à la main, dotés d'une
-              mousse en pure laine d emouton et personnalisables selon vos
-              désirs
-            </p>
-            <a class="home__descr--btn" href="./products.html">
-              Découvrez les !
-            </a>
-          </div>
-        </div>
+        <div id="order-container" class="glassmorphism"></div>
       </div>
-
       <footer class="footer">
         <a href="./index.html" class="footer__img"
           ><img
