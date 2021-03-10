@@ -234,6 +234,7 @@
   display: grid;
   justify-items: center;
   align-items: center;
+  max-width: 1200px;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 120px 20px;
   width: 100%;
