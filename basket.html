@@ -32,22 +32,19 @@
             <div id="basket-indicator"></div>
           </a>
           <div class="vertical-separation__smaller--2"></div>
-          <label class="dropdown">
+          <div class="dropdown">
             <div class="dropdown__name">
               <span id="dropdown__title"></span>
               <div class="dropdown__btn">
                 <span class="fas fa-user"></span>
               </div>
             </div>
-
-            <input type="checkbox" class="dropdown__input" id="test" />
-
-            <ul class="dropdown__menu">
-              <li><a href="./user.html">Mes informations</a></li>
-              <li class="divider"></li>
-              <li><a href="./old-orders.html">Mes commandes</a></li>
-            </ul>
-          </label>
+            <div class="dropdown__menu">
+              <a href="./user.html">Mes informations</a>
+              <a class="divider"></a>
+              <a href="./old-orders.html">Mes commandes</a>
+            </div>
+          </div>
         </nav>
       </header>
 
@@ -56,7 +53,7 @@
           <div id="table-container" class="basket__table"></div>
           <div id="form-container" class="basket__form">
             <p class="basket__form--title">Vos informations</p>
-            <form type="post" class="order-form">
+            <form class="order-form">
               <p>
                 <label for="lastname" class="required">Nom :</label>
                 <input
